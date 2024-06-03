@@ -1,4 +1,4 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { log } from 'console';
 
 import { OpenAIService } from './openai.service';
@@ -7,23 +7,22 @@ import { OpenAIService } from './openai.service';
 export class OpenAIController {
   constructor(private readonly OpenAIService: OpenAIService) {}
 
-  @Get('completion')
-  async getCompletion(
-    @Query('question') question: string,
-  ): Promise<string> {
+  @Post('completion')
+  async getCompletion(@Body() body: any) {
     try {
       const openai = this.OpenAIService.getOpenAIClient();
+      const { question } = body;
 
       const completion = await openai.chat.completions.create({
         messages: [{ role: "system", content: question }],
         model: "gpt-3.5-turbo",
       });
 
-      return completion.choices[0].message.content.trim();
+      return { completion: completion.choices[0].message.content.trim() };
     } catch (error) {
       log('Erro ao enviar request para a OpenAI:', error);
 
-      return 'Tente novamente.';
+      return { error: "Erro ao se comunicar a Open AI. Tente novamente." };
     }
   }
 }

@@ -7,10 +7,11 @@ import { OpenAIModule } from './openAI/openai.module';
 
 @Module({
   imports: [ConfigModule.forRoot({
-    envFilePath: '.env',
-    isGlobal: true,
-  }),
-  OpenAIModule],
+      envFilePath: '.env',
+      isGlobal: true,
+    }),
+    OpenAIModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
