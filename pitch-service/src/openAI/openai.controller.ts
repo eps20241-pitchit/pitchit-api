@@ -1,15 +1,22 @@
 import { Body, Controller, Post } from '@nestjs/common';
+import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { OpenAIClientService } from './services/openai-client.service';
 import { CompletionRequestDto } from './dto/completion-request.dto';
 import { CompletionResponseDto } from './dto/completion-response.dto';
 import { PitchRequestDto } from './dto/pitch-request.dto';
 
-@Controller('openai')
+@ApiTags('Pitch')
+@Controller('pitch')
 export class OpenAIController {
   constructor(private readonly openAIClientService: OpenAIClientService)  {}
 
   @Post('completion')
+  @ApiResponse({ status: 201, description: 'Resposta gerada com sucesso.'})
+  @ApiBody({
+     type: CompletionRequestDto,
+     description: 'Estrutura Json para uma requisitar uma completion.',
+  })
   async createCompletion(@Body() body: CompletionRequestDto): Promise<CompletionResponseDto> {
     try {
       const { question } = body;
@@ -21,7 +28,12 @@ export class OpenAIController {
     }
   }
 
-  @Post('pitch')
+  @Post('create')
+  @ApiResponse({ status: 201, description: 'Pitch gerado e salvo com sucesso.'})
+  @ApiBody({
+     type: PitchRequestDto,
+     description: 'Estrutura Json para uma requisitar uma completion.',
+  })
   async createPitch(@Body() body: PitchRequestDto): Promise<CompletionResponseDto> {
     try {
       const { projectName, description } = body;
