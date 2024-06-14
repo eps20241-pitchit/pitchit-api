@@ -1,13 +1,16 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Redirect } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 
 import { AppService } from './app.service';
 
+@ApiTags('Home')
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Get("/docs")
+  @Redirect('http://localhost:3000/api/docs', 301)
+  getHello() {
+    return { url: 'http://localhost:3000/api/docs' };
   }
 }
