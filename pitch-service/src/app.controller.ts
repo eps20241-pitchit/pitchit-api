@@ -9,8 +9,8 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get("/docs")
-  @Redirect('http://localhost:3000/api/docs', 301)
+  @Redirect('https://pitchit-api.onrender.com/api/docs', 301)
   getHello() {
-    return { url: 'http://localhost:3000/api/docs' };
+    return { url: 'https://pitchit-api.onrender.com/api/docs' };
   }
 }

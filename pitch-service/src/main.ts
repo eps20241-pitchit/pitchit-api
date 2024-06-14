@@ -16,6 +16,7 @@ async function bootstrap() {
   .setDescription('É uma API que usa Chat GPT para gerar pitches de apresentação.')
   .setVersion('1.0')
   .addServer('http://localhost:3000/', 'Local environment')
+  .addServer('https://pitchit-api.onrender.com/', 'Production environment')
   .build();
 
   const document = SwaggerModule.createDocument(app, config);
