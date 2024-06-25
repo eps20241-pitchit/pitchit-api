@@ -9,8 +9,7 @@ var options = {
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
-  app.setGlobalPrefix('api');
-
+  
   const config = new DocumentBuilder()
   .setTitle('Pitch Service')
   .setDescription('É uma API que usa Chat GPT para gerar pitches de apresentação.')
@@ -20,7 +19,7 @@ async function bootstrap() {
   .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api/docs', app, document, options);
+  SwaggerModule.setup('docs', app, document, options);
 
   await app.listen(3000);
 }

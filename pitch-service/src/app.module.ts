@@ -1,9 +1,10 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { OpenAIModule } from './openAI/openai.module';
+import { RedirectMiddleware } from './middlewares/redirect.middleware';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -15,4 +16,10 @@ import { OpenAIModule } from './openAI/openai.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(RedirectMiddleware)
+      .forRoutes('*');
+  }
+}
