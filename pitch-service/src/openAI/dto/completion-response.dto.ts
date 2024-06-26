@@ -1,4 +1,6 @@
 export class CompletionResponseDto {
-  completion?: string;
+  id?: string;
+  userId?: number;
+  pitchText?: string;
   error?: string;
 }
