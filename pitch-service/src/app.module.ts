@@ -1,10 +1,23 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+
+import { OpenAIModule } from './openAI/openai.module';
+import { RedirectMiddleware } from './middlewares/redirect.middleware';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [ConfigModule.forRoot({
+      envFilePath: '.env',
+      isGlobal: true,
+    }),
+    OpenAIModule,
+  ],
+  controllers: [],
+  providers: [],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(RedirectMiddleware)
+      .forRoutes('/');
+  }
+}
