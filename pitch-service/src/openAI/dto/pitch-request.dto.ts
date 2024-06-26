@@ -7,7 +7,7 @@ export class PitchRequestDto {
     required: true
   })
   @IsNotEmpty({message: "userId não pode ser vazio."})
-  userId: number;
+  userId: string;
   
   @ApiProperty({
     example: 'Sebrae',

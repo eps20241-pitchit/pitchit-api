@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "pitch" ALTER COLUMN "userId" SET DATA TYPE TEXT;

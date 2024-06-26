@@ -7,7 +7,7 @@ import { CompletionResponseDto } from '../dto/completion-response.dto';
 export class OpenAIClientService {
   constructor(private readonly openAIService: OpenAIService, private readonly prismaService: PrismaService) {}
 
-  async getCompletion(prompt: string, userId: number): Promise<CompletionResponseDto> {
+  async getCompletion(prompt: string, userId: string): Promise<CompletionResponseDto> {
     const openai = this.openAIService.getOpenAIClient();
     const completion = await openai.chat.completions.create({
       messages: [{ role: "system", content: prompt }],
@@ -28,7 +28,7 @@ export class OpenAIClientService {
     return await this.prismaService.pitch.findMany();
   }
 
-  async findUserPitches(userId: number) {
+  async findUserPitches(userId: string) {
     return await this.prismaService.pitch.findMany({
       where: { userId }
     });
