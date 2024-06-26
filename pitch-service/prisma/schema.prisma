@@ -15,7 +15,7 @@ datasource db {
 
 model Pitch {
   id        String @id @default(uuid()) @db.Uuid
-  userId    Int
+  userId    String
   pitchText String @map("pitch_text")
 
   @@map("pitch")

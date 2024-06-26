@@ -127,7 +127,7 @@ export class OpenAIController {
     description: 'Usuário não encontrado.',
   })
   findUserPitches(@Param('userId') userId: string) {
-    return this.openAIClientService.findUserPitches(+userId);
+    return this.openAIClientService.findUserPitches(userId);
   }
 
   @Get()

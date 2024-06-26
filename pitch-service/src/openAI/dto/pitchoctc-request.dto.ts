@@ -7,7 +7,7 @@ export class PitchOCTCRequestDto {
     required: true
   })
   @IsNotEmpty({message: "userId não pode ser vazio."})
-  userId: number;
+  userId: string;
 
   @ApiProperty({
     example: 'Innovatech Solutions',
