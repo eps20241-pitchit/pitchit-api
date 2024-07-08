@@ -59,49 +59,49 @@ export class OpenAIController {
     try {
       const {
         userId,
-        projectName,
+        nomeProjeto,
         intro,
-        uniqueness,
-        differentiability,
-        needness,
-        problem,
-        targetMarket,
-        gapMarket,
-        competitiveness,
-        howWork,
-        howManyPeople,
-        whoDoes,
-        process,
-        savings,
-        businessVerification,
-        whatIsUsed,
-        supporters,
-        results } = body;
+        originalidade,
+        diferencial,
+        necessidade,
+        problema,
+        publicoAlvo,
+        lacunaMercado,
+        competitividade,
+        comoFunciona,
+        qtdPessoasProblema,
+        quemFaz,
+        processo,
+        economiaPublico,
+        verificacaoNegocio,
+        fornecedor,
+        apoiador,
+        resultado } = body;
 
-      const prompt = `Como um CEO bem-sucedido da empresa/projeto ${projectName}, desejo criar um pitch convincente de aproximadamente três minutos para destacar os pontos fortes da nossa empresa. 
+      const prompt = `Como um CEO bem-sucedido da empresa/projeto ${nomeProjeto}, desejo criar um pitch convincente de aproximadamente três minutos para destacar os pontos fortes da nossa empresa. 
       O pitch deve primeiro fazer uma introdução com a introdução escolhida: ${intro}. 
       Após a introdução gerar um gancho para a parte de Conceituar a solução do projeto, com as perguntas sobre o que é e como funciona abaixo, finalizando com um gancho para a contextualização(Essa parte deve ter aproximadamente 1 minuto e meio):
-        - O que torna único? ${uniqueness}
-        - O que você pode fazer que os outros não podem? ${differentiability}
-        - Qual a maior necessidade que isso atende? ${needness}
-        - Que problema isso resolve? ${problem}
-        - Quem é mais beneficiado com isso? ${targetMarket}
-        - Que lacuna no mercado isso preenche? ${gapMarket}
-        - O que torna sua concorrência inferior? ${competitiveness}
-        - O que lhe permite sua oferta funcionar? ${howWork}
-        - Quantas pessoas tem esse problema? ${howManyPeople}
-        - Quem realmente executa o serviço? ${whoDoes}
-        - Existe um processo que deve ser seguido com precisão? ${process}
-        - Quanto dinheiro o comprador poderá economizar? ${savings}
+        - O que diferencia o nosso projeto/produto e o torna único? ${originalidade}.
+        - Quais são as capacidades exclusivas que o nosso projeto possui e que o diferencia dos outros? ${diferencial}.
+        - Qual a maior necessidade que a nossa organização/produto atende? ${necessidade}.
+        - Que problema a nossa solução resolve? ${problema}.
+        - Quem são os principais beneficiários dessa solução? Qual é o seu público-alvo? ${publicoAlvo}.
+        - Qual(is) é(são) a(s) lacuna(s) no mercado que a nossa solução preenche? ${lacunaMercado}.
+        - O que torna a nossa concorrência inferior? ${competitividade}.
+        - O que permite a nossa solução funcionar? Como ela funciona? ${comoFunciona}.
+        - Quantas pessoas tem esse problema? Existe alguma pesquisa relacionado a isso? Quais são os dados? ${qtdPessoasProblema}.
+        - Quem realmente executa o serviço? ${quemFaz}.
+        - Existe um processo que deve ser seguido com precisão? ${processo}.
+        - Quanto o nosso público poderá economizar com a nossa solução?${economiaPublico}.
       
       Depois o pitch deve Contextualizar o projeto com as seguintes perguntas, finalizando com um ganho para efetivação(Essa parte deve ter aproximadamente 1 minuto):
-        - Um terceiro já verificou suas alegações? ${businessVerification}
-        - Quem você está usando para entregar isso? ${whatIsUsed}
-        - Você tem apoiadores inesperados? ${supporters}
+        - Existe alguma pesquisa feita por terceiros que já verificou as nossas alegações e hipóteses? ${verificacaoNegocio}.
+        - Com qual parceiro ou fornecedor estamos trabalhando para entregar isso? ${fornecedor}.
+        - Existem apoiadores inesperados do nosso projeto/solução? ${apoiador}.
 
       Por fim, deve Efetivar a proposta com as perguntas, finalizando de forma a engajar o ouvinte(Essa parte deve ter aproximadamente 30 segundos):
-        - Que bons resultados o levaram a fazer esse trabalho? ${results}.
-      As perguntas devem ser colocadas no pitch de maneira fluida, sem parecer que está respondendo as perguntas sequencialmente, apenas respeitando as três etapas: Conceituas, Contextualizar e Efetivar.`;
+        - Quais foram os resultados positivos que o motivaram a realizar esse projeto? ${resultado}.
+      As perguntas devem ser colocadas no pitch de maneira fluida, sem parecer que está respondendo as perguntas sequencialmente, apenas respeitando as três etapas: Conceituar, Contextualizar e Efetivar.`;
 
       return await this.openAIClientService.getCompletion(prompt, userId);
     } catch (error) {
