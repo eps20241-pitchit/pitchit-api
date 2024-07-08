@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { OpenAIService } from './openai.service';
-import { PrismaService } from 'src/database/prisma.service';
+import { PrismaService } from '../../database/prisma.service';
 import { CompletionResponseDto } from '../dto/completion-response.dto';
 
 @Injectable()
