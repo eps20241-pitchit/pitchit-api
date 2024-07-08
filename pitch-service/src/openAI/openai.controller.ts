@@ -40,8 +40,8 @@ export class OpenAIController {
     try {
       const { projectName, description, userId } = body;
 
-      const prompt = `Como um CEO bem-sucedido da empresa/projeto ${projectName}, desejo criar um pitch convincente de aproximadamente três minutos para destacar os pontos fortes da nossa empresa. A empresa possui a seguinte descrição: ${description}. O pitch deve cativar a audiência desde o início, transmitindo nossa visão de forma clara e envolvente.`;
-      
+      const prompt = `Como um CEO bem-sucedido da empresa/projeto ${projectName}, desejo criar um pitch impactante em português, com cerca de 5 minutos, para destacar os pontos fortes da nossa organização. A empresa possui é descrita da seguinte forma: ${description}.  O objetivo é cativar a audiência com uma introdução que se encaixe melhor com nossa descrição, seja através de uma história impactante, pergunta provocativa, dados surpreendentes, citação relevante ou demonstração do problema. O pitch seguirá uma estrutura clara: vamos conceituar o que é nossa organização/produto e como funciona, contextualizar com detalhes que engajem a audiência e finalizar com uma chamada à ação efetiva, incentivando ação como compra, investimento ou parceria.`;
+
       return await this.openAIClientService.getCompletion(prompt,  userId);
     } catch (error) {
       return { error: "Erro ao se comunicar com a OpenAI. Tente novamente." };
