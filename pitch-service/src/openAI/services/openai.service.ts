@@ -7,7 +7,7 @@ export class OpenAIService {
 
   constructor() {
     const baseURL = process.env.OPENAI_BASE_URL ?? 'https://api.openai.com/v1';
-    const apiKey = process.env.OPENAI_API_KEY;
+    const apiKey = process.env.OPENAI_API_KEY ?? 'key';
     const organization = null;
     const project = null;
 
